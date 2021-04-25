@@ -1,0 +1,33 @@
+@startuml
+
+namespace Engine{
+
+class Engine{
+...
+--
++ Engine(argc : int, argv : char**, game : std::unique_ptr<IGameCore>)
++ void start()
+}
+
+class IGameCore{
++ {abstract} init(argc : int, argv : char**)
++ {abstract} update(deltaTime : double)
++ {abstract} render()
+}
+
+Engine <-l- IGameCore
+
+} 
+
+namespace Game{
+
+class Game{
+...
+}
+	
+} 
+
+Engine.IGameCore <|-- Game.Game
+Engine.Engine *-- Game.Game
+
+@enduml
