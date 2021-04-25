@@ -1,1 +1,1 @@
-# JTGE
+# Jackston's Terminal Game Engine
