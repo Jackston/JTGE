@@ -22,12 +22,34 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 ******************************************************************************/
 
-#include "JTGE/Engine.hpp"
-#include "Game.hpp"
+#ifndef __JTGE_ENGINE_HPP__
+#define __JTGE_ENGINE_HPP__
 
-int main(int argc, char** argv)
+#include <memory>
+
+namespace JTGE {
+
+// forward declaration
+class IGameCore;
+
+class Engine final
 {
-    JTGE::Engine engine(std::make_unique<Game>());
-    engine.run();
-    return 0;
-}
+public:
+    Engine(std::unique_ptr<IGameCore> game);
+    ~Engine();
+
+    Engine(const Engine&) = delete;
+    Engine(Engine&&) = delete;
+    Engine& operator=(const Engine&) = delete;
+    Engine& operator=(Engine&&) = delete;
+
+    void run();
+
+private:
+    class ImplT;
+    std::unique_ptr<ImplT> m_pImpl;
+};
+
+} // namespace JTGE
+
+#endif // __JTGE_ENGINE_HPP__

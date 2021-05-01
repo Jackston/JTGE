@@ -22,12 +22,26 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 ******************************************************************************/
 
-#include "JTGE/Engine.hpp"
-#include "Game.hpp"
+#ifndef __JTGE_I_GAME_CORE_HPP__
+#define __JTGE_I_GAME_CORE_HPP__
 
-int main(int argc, char** argv)
+namespace JTGE {
+
+// forward declaration
+class IRenderer;
+
+class IGameCore
 {
-    JTGE::Engine engine(std::make_unique<Game>());
-    engine.run();
-    return 0;
-}
+public:
+    virtual ~IGameCore() = default;
+
+    virtual void config() = 0;
+    virtual void initialize() = 0;
+    virtual void update(const float deltaTime) = 0;
+    virtual void render(IRenderer& renderer) = 0;
+    virtual void deinitialize() = 0;
+};
+
+} // namespace JTGE
+
+#endif // __JTGE_I_GAME_CORE_HPP__

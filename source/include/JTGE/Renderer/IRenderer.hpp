@@ -22,18 +22,18 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 ******************************************************************************/
 
-#ifndef __INTERNAL_TEST_HPP__
-#define __INTERNAL_TEST_HPP__
+#ifndef __JTGE_I_RENDERER_HPP__
+#define __JTGE_I_RENDERER_HPP__
 
-namespace JTGE
-{
+namespace JTGE {
 
-class InternalTest
+class IRenderer
 {
 public:
-    static void foo();
+    virtual ~IRenderer() = default;
+    virtual void draw() = 0;
 };
 
-} //namespace JTGE
+} // namespace JTGE
 
-#endif // __INTERNAL_TEST_HPP__
+#endif // __JTGE_I_RENDERER_HPP__

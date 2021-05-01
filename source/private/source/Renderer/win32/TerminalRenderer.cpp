@@ -22,12 +22,16 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 ******************************************************************************/
 
-#include "JTGE/Engine.hpp"
-#include "Game.hpp"
+#include "Renderer/TerminalRenderer.hpp"
 
-int main(int argc, char** argv)
+namespace JTGE {
+
+TerminalRenderer::TerminalRenderer() = default;
+
+TerminalRenderer::~TerminalRenderer() = default;
+
+void TerminalRenderer::draw()
 {
-    JTGE::Engine engine(std::make_unique<Game>());
-    engine.run();
-    return 0;
 }
+
+} // namespace JTGE

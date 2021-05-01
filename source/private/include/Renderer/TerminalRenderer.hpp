@@ -22,15 +22,22 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 ******************************************************************************/
 
-#include "JTGE/Test.hpp"
-#include "InternalTest.hpp"
+#ifndef __JTGE_TERMINAL_RENDERER_HPP__
+#define __JTGE_TERMINAL_RENDERER_HPP__
 
-namespace JTGE
-{
+#include "JTGE/Renderer/IRenderer.hpp"
 
-void Test::foo()
+namespace JTGE {
+
+class TerminalRenderer : public IRenderer
 {
-    InternalTest::foo();
-}
+public:
+    TerminalRenderer();
+    ~TerminalRenderer() override;
+
+    void draw() override;
+};
 
 } // namespace JTGE
+
+#endif // __JTGE_TERMINAL_RENDERER_HPP__

@@ -23,11 +23,62 @@ SOFTWARE.
 ******************************************************************************/
 
 #include "JTGE/Engine.hpp"
-#include "Game.hpp"
+#include "JTGE/IGameCore.hpp"
+#include "Renderer/TerminalRenderer.hpp"
 
-int main(int argc, char** argv)
+namespace JTGE {
+
+class Engine::ImplT
 {
-    JTGE::Engine engine(std::make_unique<Game>());
-    engine.run();
-    return 0;
+public:
+    ImplT(std::unique_ptr<IGameCore> game)
+        : m_game(std::move(game))
+        , m_renderer()
+    {
+        if (m_game != nullptr)
+        {
+            m_game->config();
+        }
+    }
+
+    void run(const Engine& self)
+    {
+        if (m_game == nullptr)
+        {
+            return;
+        }
+
+        m_game->initialize();
+        runGameLoop();
+        m_game->deinitialize();
+    }
+
+private:
+    void runGameLoop()
+    {
+        while (true)
+        {
+            m_game->update(0.0f);
+            m_game->render(m_renderer);
+
+            break; //tmp
+        }
+    }
+
+private:
+    std::unique_ptr<IGameCore> m_game;
+    TerminalRenderer m_renderer;
+};
+
+Engine::Engine(std::unique_ptr<IGameCore> game)
+    : m_pImpl(std::make_unique<ImplT>(std::move(game)))
+{}
+
+Engine::~Engine() = default;
+
+void Engine::run()
+{
+    m_pImpl->run(*this);
 }
+
+} // namespace JTGE

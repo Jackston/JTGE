@@ -22,16 +22,35 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 ******************************************************************************/
 
-#include "InternalTest.hpp"
+#include "Game.hpp"
 
 #include <iostream>
 
-namespace JTGE
-{
+Game::Game() = default;
 
-void InternalTest::foo()
+Game::~Game() = default;
+
+void Game::config()
 {
-    std::cout << "Hello from JTGE\n";
+    std::cout << __FUNCTION__ << "\n";
 }
 
-} // namespace JTGE
+void Game::initialize()
+{
+    std::cout << __FUNCTION__ << "\n";
+}
+
+void Game::update(const float deltaTime)
+{
+    std::cout << __FUNCTION__ << "\n";
+}
+
+void Game::render(JTGE::IRenderer& renderer)
+{
+    std::cout << __FUNCTION__ << "\n";
+}
+
+void Game::deinitialize()
+{
+    std::cout << __FUNCTION__ << "\n";
+}

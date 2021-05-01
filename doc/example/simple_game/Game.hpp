@@ -22,18 +22,27 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 ******************************************************************************/
 
-#ifndef __TEST_HPP__
-#define __TEST_HPP__
+#ifndef __GAME_HPP__
+#define __GAME_HPP__
 
-namespace JTGE
-{
+#include "JTGE/IGameCore.hpp"
 
-class Test
+class Game : public JTGE::IGameCore
 {
 public:
-    static void foo();
+    Game();
+    ~Game() override;
+
+    Game(const Game&) = delete;
+    Game(Game&&) = delete;
+    Game& operator=(const Game&) = delete;
+    Game& operator=(Game&&) = delete;
+    
+    void config() override;
+    void initialize() override;
+    void update(const float deltaTime) override;
+    void render(JTGE::IRenderer& renderer) override;
+    void deinitialize() override;
 };
 
-} //namespace JTGE
-
-#endif // __TEST_HPP__
+#endif // __GAME_HPP__
